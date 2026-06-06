@@ -1,4 +1,4 @@
-from app.operations import addition, subtraction, multiplication, division
+from app.operations import Operations
 
 def calculator() -> None:
     """
@@ -39,14 +39,14 @@ def calculator() -> None:
             continue
 
         if operation == "add":
-            result = addition(a, b)
+            result = Operations.addition(a, b)
         elif operation == "subtract":
-            result = subtraction(a, b)
+            result = Operations.subtraction(a, b)
         elif operation == "multiply":
-            result = multiplication(a, b)
+            result = Operations.multiplication(a, b)
         elif operation == "divide":
             try:
-                result = division(a, b)
+                result = Operations.division(a, b)
             except ZeroDivisionError as e:
                 print(e)
                 continue
