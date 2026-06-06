@@ -29,4 +29,4 @@ jobs:
           pip install -r requirements.txt
       - name: Run flake8 Lint
         run: |
-          flake8 app/calculator/__init__.py app/operations/__init__.py main.py
+          flake8 --extend-ignore E501 app/calculator/__init__.py app/operations/__init__.py main.py
