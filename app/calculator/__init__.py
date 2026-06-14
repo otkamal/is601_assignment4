@@ -48,3 +48,4 @@ def calculator() -> None:
         except ZeroDivisionError as err:
             print(err)
             continue
+        
