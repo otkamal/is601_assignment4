@@ -15,14 +15,20 @@ class CalculationFactory:
     
     @classmethod
     def register_calculation(cls, calc: str):
-        def registration_decorator(subclass):
-            cls._calculations[calc] = subclass
+        def registration_decorator(subclass, ):
+            calc_sanitized = calc.lower()
+            if calc_sanitized in cls._calculations:
+                raise ValueError(f"{calc_sanitized} is already registered.")
+            cls._calculations[calc_sanitized] = subclass
             return subclass
         return registration_decorator
     
     @classmethod
     def build_calculation(cls, calc: str, a: float, b: float) -> Calculation:
-        new_calculation = cls._calculations.get(calc)
+        calc_sanitized = calc.lower()
+        if calc_sanitized  not in cls._calculations:
+            raise ValueError("{calc_sanitized } is not a supported operation.")
+        new_calculation = cls._calculations.get(calc_sanitized)
         return new_calculation(a, b)
     
 @CalculationFactory.register_calculation('add')
