@@ -35,28 +35,16 @@ def calculator() -> None:
         try:
             operation, a, b = user_input.split()
             a, b = float(a), float(b)
-            calculation = CalculationFactory.build_calculation(operation, a, b)
-            print(f"Result: {calculation.execute()}")
         except ValueError:
             print("Invalid input. Please follow <operation> <a> <b> syntax.")
             continue
-        except ZeroDivisionError as e:
-            print(e)
+
+        try:
+            calculation = CalculationFactory.build_calculation(operation, a, b)
+            print(f"Result: {calculation.execute()}")
+        except ValueError as err:
+            print(err)
             continue
-
-        # if operation == "add":
-        #     result = Operations.addition(a, b)
-        # elif operation == "subtract":
-        #     result = Operations.subtraction(a, b)
-        # elif operation == "multiply":
-        #     result = Operations.multiplication(a, b)
-        # elif operation == "divide":
-        #     try:
-        #         result = Operations.division(a, b)
-        #     except ZeroDivisionError as e:
-        #         print(e)
-        #         continue
-        # else:
-        #     print(f"Unknown operation {operation}. Supported operations: add, subtract, multiply, divide.")
-        #     continue
-
+        except ZeroDivisionError as err:
+            print(err)
+            continue

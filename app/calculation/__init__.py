@@ -27,7 +27,7 @@ class CalculationFactory:
     def build_calculation(cls, calc: str, a: float, b: float) -> Calculation:
         calc_sanitized = calc.lower()
         if calc_sanitized  not in cls._calculations:
-            raise ValueError("{calc_sanitized } is not a supported operation.")
+            raise ValueError(f"\"{calc_sanitized}\" is not a supported operation.")
         new_calculation = cls._calculations.get(calc_sanitized)
         return new_calculation(a, b)
     
