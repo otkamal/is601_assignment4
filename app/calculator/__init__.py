@@ -1,4 +1,4 @@
-from app.operations import Operations
+from pyfiglet import Figlet
 from app.calculation import CalculationFactory
 
 def calculator() -> None:
@@ -24,9 +24,15 @@ def calculator() -> None:
         Enter an operation and two numbers, or 'exit' to quit: add 5 3
         Result: 8.0
     """
-    print("Welcome to the calculator REPL. Type 'exit' to quit.")
+
+    startscreen = Figlet(font="slant")
+    print(startscreen.renderText("Calculator REPL"))
+    print("Type 'exit' to quit.")
+    print("Enter an operation (add, subtract, multiply, divide) and two numbers, or 'exit' to quit.")
+    print("Enter 'help' to see available operations or 'history' to see previously ran operations.")
+    
     while True:
-        user_input = input("Enter an operation (add, subtract, multiply, divide) and two numbers, or 'exit' to quit: ")
+        user_input = input(">>> ")
         user_input = user_input.lower()
         if user_input == "exit":
             print("Exiting calculator... Goodbye ~")
@@ -41,11 +47,10 @@ def calculator() -> None:
 
         try:
             calculation = CalculationFactory.build_calculation(operation, a, b)
-            print(f"Result: {calculation.execute()}")
+            print(f"Result: {calculation.execute()}\n")
         except ValueError as err:
             print(err)
             continue
         except ZeroDivisionError as err:
             print(err)
             continue
-        
