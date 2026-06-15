@@ -16,7 +16,7 @@ A command-line calculator REPL built in Python, refactored to use an abstract ba
 ## Project Structure
 
 ```
-mod4_assignment/
+is601_assignment4/
 ├── .github/
 │   └── workflows
 │       └── tests.yml
